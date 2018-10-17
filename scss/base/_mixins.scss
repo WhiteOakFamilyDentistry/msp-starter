@@ -1,0 +1,352 @@
+//========================================
+// MIXINS
+//========================================
+
+
+@mixin breakpoint($min: 0, $max: 0) {
+  $type: type-of($min);
+  //these match bootstrap's breakpoints
+  @if $type == string {
+    @if $min == xs { //yes, this is backwards, but I prefer to use max-width instead of min-width
+      @media (max-width: 575px) { @content; }       // Mobile Devices
+    }
+
+    @else if $min == sm {
+      @media (max-width: 767px) { @content; }       // Tablet Devices
+    }
+
+    @else if $min == md {
+      @media (max-width: 991px) { @content; }       // Desktops
+    }
+
+    @else if $min == lg {
+      @media (max-width: 1199px) { @content; }      // Widescreen Desktops
+    }
+
+    // Otherwise pass a warning to the compiler as to the appropriate options
+    @else {
+      @warn "The breakpoint mixin supports the following attributes: xs, sm, md, lg";
+    }
+  }
+  @else if $type == number {
+    // Allow for custom parameters for min and max size
+    $query: "all" !default;
+    @if      $min != 0 and $max != 0 { $query: "(min-width: #{$min}) and (max-width: #{$max})"; } // set both min and max
+    @else if $min != 0 and $max == 0 { $query: "(min-width: #{$min})"; } // set just min
+    @else if $min == 0 and $max != 0 { $query: "(max-width: #{$max})"; } // set just max
+    @media #{$query} { @content; }
+  }
+}
+
+
+/* Add vendor prefixes to mixin declarations */
+
+$VENDORS: webkit, moz, ms, o;
+
+@mixin prefix($property, $values...) {
+  @each $vendor in $VENDORS {
+    -#{$vendor}-#{$property}: $values;
+  }
+  #{$property}: $values;
+}
+
+@mixin vendor-function($property, $func, $args...) {
+  @each $vendor in $VENDORS {
+    #{$property}: -#{$vendor}-#{$func}($args);
+  }
+  #{$property}: #{$func}($args);
+}
+
+
+/*** REM CONVERSION FOR PIXEL USAGE ***/
+$default-line-height: 1.43 !default;
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+@mixin font-size($size, $lineHeight: $default-line-height) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+  line-height: $lineHeight;
+}
+@mixin letter-spacing($size){
+  letter-spacing: $size;
+  letter-spacing: calculateRem($size);
+}
+
+/*** VERTICAL GRADIENTS ***/
+
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $toColor; /* FALLBACK COLOR */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+/*** HORIZONTAL GRADIENTS ***/
+
+@mixin linear-gradient-horz($fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -moz-linear-gradient(left,  $fromColor, $toColor); /* FF3.6+ */
+  background-image: -webkit-gradient(linear, left top, right top, color-stop($fromColor), color-stop($toColor)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  $fromColor, $toColor); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  $fromColor, $toColor); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  $fromColor, $toColor); /* IE10+ */
+  background: linear-gradient(to right,  $fromColor, $toColor); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$fromColor', endColorstr='$toColor',GradientType=1 ); /* IE6-8 */
+}
+
+/*** GRADIENTS WITH A BACKGROUND IMAGE ***/
+
+@mixin linear-gradient-image($image, $fromColor, $toColor) {
+  background: $image, $toColor; /* Fallback Color */
+  background: $image, -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background: $image, -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background:  $image, -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+  background:  $image, -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+  background:  $image, -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+  background:  $image, linear-gradient(top, $fromColor, $toColor);
+}
+
+/*** OTHER MIXINS ***/
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+@mixin box-shadow($shadow...) {
+  @include prefix(box-shadow, $shadow);
+}
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: alpha(opacity=$opacityIE);
+}
+@mixin text-shadow($shadow...) {
+  @include prefix(text-shadow, $shadow);
+}
+@mixin background-size($size) {
+  @include prefix(background-size, $size);
+}
+@mixin box-sizing($box-sizing) {
+  @include prefix(box-sizing, $box-sizing);
+}
+
+/*** TRANSFORM MIXINS ***/
+
+@mixin transform($transforms) {
+  @include prefix(transform, $transforms);
+}
+@mixin rotate($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+@mixin skew($x, $y) {
+  @include transform(skew(#{$x}deg, #{$y}deg));
+}
+@mixin transform-origin($origin) {
+  moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+/*** FILTER MIXIN ***/
+
+@mixin filter($filter-type,$filter-amount) {
+  -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+  -moz-filter: $filter-type+unquote('(#{$filter-amount})');
+  -ms-filter: $filter-type+unquote('(#{$filter-amount})');
+  -o-filter: $filter-type+unquote('(#{$filter-amount})');
+  filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+
+/* BUTTON MIXIN */
+
+@mixin big-button($bgColor, $textColor, $fontSize, $topPad, $sidePad, $hover){
+  width: auto;
+  height: auto;
+  background-color: $bgColor;
+  color: $textColor;
+  padding: $topPad $sidePad;
+  @include font-size($fontSize, 1.25);
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  display: inline-block;
+  margin: 0 auto;
+  text-decoration: none;
+  @include transition($smooth);
+  @if $hover == 1 { //lighten hover state
+    &:hover{
+      background-color:lighten($bgColor, 10%);
+      @include transition($smooth);
+      text-decoration: none;
+    }
+  }
+  @if $hover == 2 { //reverse hover state
+    &:hover{
+      background-color:$textColor;
+      color: $bgColor;
+      text-decoration: none;
+      @include transition($smooth);
+    }
+  }
+  @if $hover == 3 { //opacity to opaque hover state
+    background-color: rgba($bgColor, .5);
+    &:hover{
+      background-color:rgba($bgColor, 1);
+      text-decoration: none;
+      @include transition($smooth);
+    }
+  }
+}
+
+
+/* FLEXBOX MIXINS */
+
+/*** BASIC FLEXBOX MIXINS WITH VENDOR PREFIXES ***/
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin inline-flexbox() {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+@mixin flex-flow($flow) {
+  -webkit-flex-flow: $flow;
+  -moz-flex-flow: $flow;
+  -ms-flex-flow: $flow;
+  flex-flow: $flow;
+}
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+  -moz-flex-grow: $grow;
+  -ms-flex-grow: $grow;
+  flex-grow: $grow;
+}
+@mixin flex($flex) {
+  -webkit-flex: $flex;
+  -moz-flex: $flex;
+  -ms-flex: $flex;
+  flex: $flex;
+}
+@mixin flex-shrink($shrink) {
+  -webkit-flex-shrink: $shrink;
+  -moz-flex-shrink: $shrink;
+  -ms-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+@mixin flex-basis($width) {
+  -webkit-flex-basis: $width;
+  -moz-flex-basis: $width;
+  -ms-flex-basis: $width;
+  flex-basis: $width;
+}
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
+@mixin align-self($align) {
+  -webkit-align-self: $align;
+  -moz-align-self: $align;
+  -ms-align-self: $align;
+  align-self: $align;
+}
+
+
+/*** COMMONLY USED FLEXBOX STYLES ***/
+
+
+@mixin row-space-around {
+  @include flexbox();
+  @include align-items(center);
+  @include flex-flow(row nowrap);
+  @include justify-content(space-around);
+  //height: 100%;
+}
+@mixin row-flex-start {
+  @include flexbox();
+  @include align-items(center);
+  @include flex-flow(row nowrap);
+  @include justify-content(flex-start);
+  //height: 100%;
+}
+@mixin row-space-between {
+  @include flexbox();
+  @include align-items(center);
+  @include flex-flow(row nowrap);
+  @include justify-content(space-between);
+  //height: 100%;
+}
+@mixin inline-row-space-around {
+  @include inline-flexbox();
+  @include align-items(center);
+  @include flex-flow(row nowrap);
+  @include justify-content(space-around);
+  height: 100%;
+}
+@mixin inline-row-center {
+  @include inline-flexbox();
+  @include align-items(center);
+  @include flex-flow(row nowrap);
+  @include justify-content(center);
+  height: 100%;
+}

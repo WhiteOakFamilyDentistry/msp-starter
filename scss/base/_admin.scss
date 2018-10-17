@@ -1,0 +1,24 @@
+/*** LOGIN PAGE STYLES ***/
+
+body {
+	&.login {
+	}
+}
+.login {
+	h1 {
+		a {
+		}
+	}
+}
+#login {
+	p {
+		&#nav, &#backtoblog {
+			a {
+				@include transition($smooth);
+				&:hover {
+					@include transition($smooth);
+				}
+			}
+		}
+	}
+}

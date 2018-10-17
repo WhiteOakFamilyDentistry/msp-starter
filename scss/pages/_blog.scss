@@ -1,0 +1,44 @@
+/*** ARTICLE PAGE STYLES ***/
+
+//BLOGROLL STYLES
+.blog-post {
+	.postmeta {
+		a {
+			@include transition($smooth);
+			&:hover {
+				@include transition($smooth);
+			}
+		}
+	}
+	img {
+	}
+	.post {
+		.moretag {
+			@include transition($smooth);
+			&:hover {
+				@include transition($smooth);
+			}
+		}
+	}
+}
+//PAGINATION STYLES
+.page_nav {
+	a {
+		@include transition($smooth);
+		&:hover {
+			@include transition($smooth);
+		}
+	}
+}
+//BLOG SIDEBAR & WIDGETS
+#blog-sidebar {
+	h3 {
+	}
+	.widget {
+		margin-bottom: 30px;
+	}
+}
+
+//SINGLE POST STYLES
+#single-blog {
+}
