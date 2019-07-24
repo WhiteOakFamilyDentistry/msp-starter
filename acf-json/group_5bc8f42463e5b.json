@@ -1,0 +1,96 @@
+{
+    "key": "group_5bc8f42463e5b",
+    "title": "Logo",
+    "fields": [
+        {
+            "key": "field_5bc8f5791cf9b",
+            "label": "SVG Logo Upload",
+            "name": "svg_logo_upload",
+            "type": "image",
+            "instructions": "If you have an SVG logo upload here.  It will be used for both desktop and mobile logos.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5bc90374b3e5b",
+            "label": "Traditional Logo Upload Desktop",
+            "name": "traditional_logo_desktop",
+            "type": "image",
+            "instructions": "Traditional logo upload",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5bc903f1b3e5c",
+            "label": "Traditional Logo Upload Mobile",
+            "name": "traditional_logo_mobile",
+            "type": "image",
+            "instructions": "Traditional logo upload for mobile",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-logo"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1540239702
+}

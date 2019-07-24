@@ -22,18 +22,18 @@ function create_post_type_review()
     register_post_type('review', // REGISTER CUSTOM POST TYPE
         array(
         'labels' => array(
-            'name' => __('Reviews', 'whiteoak'),
-            'singular_name' => __('Review', 'whiteoak'),
-            'add_new' => __('Add New', 'whiteoak'),
-            'add_new_item' => __('Add New Review', 'whiteoak'),
-            'edit' => __('Edit', 'whiteoak'),
-            'edit_item' => __('Edit Review', 'whiteoak'),
-            'new_item' => __('New Review', 'whiteoak'),
-            'view' => __('View Review', 'whiteoak'),
-            'view_item' => __('View Review', 'whiteoak'),
-            'search_items' => __('Search Review', 'whiteoak'),
-            'not_found' => __('No Review found', 'whiteoak'),
-            'not_found_in_trash' => __('No Review found in Trash', 'whiteoak')
+            'name' => __('Reviews', $domain),
+            'singular_name' => __('Review', $domain),
+            'add_new' => __('Add New', $domain),
+            'add_new_item' => __('Add New Review', $domain),
+            'edit' => __('Edit', $domain),
+            'edit_item' => __('Edit Review', $domain),
+            'new_item' => __('New Review', $domain),
+            'view' => __('View Review', $domain),
+            'view_item' => __('View Review', $domain),
+            'search_items' => __('Search Review', $domain),
+            'not_found' => __('No Review found', $domain),
+            'not_found_in_trash' => __('No Review found in Trash', $domain)
         ),
         'menu_icon' => 'dashicons-testimonial',
         'exclude_from_search' => false,
@@ -42,7 +42,7 @@ function create_post_type_review()
         'hierarchical' => true,
         'has_archive' => true,
         'rewrite' => array( 'slug' => 'review', 'with_front' => true, 'hierarchical' => true),
-        'supports' => array( 'title' ), // ADD PAGE-ATTRIBUTES TO ENABLE MENU_ORDER WHICH ALLOWS BACKE-END SORTING
+        'supports' => array( 'title' ), // Add page-attributes to enable menu_order which allows backe-end sorting
         'can_export' => true,
         'taxonomies' => array('group')
     ));
@@ -50,9 +50,9 @@ function create_post_type_review()
 add_action('init', 'create_post_type_review'); // ADD OUR "review" CUSTOM POST TYPE
 
 
-////////////////////////////////////////////////////////////////////
+//=====================================================================
 // REMOVE UNECESSARY YOAST META BOXES AND FIELDS FROM REVIEWS
-////////////////////////////////////////////////////////////////////
+//=====================================================================
 
 // PEACE OUT WORKSHOP
 function remove_yoast_metabox_review(){

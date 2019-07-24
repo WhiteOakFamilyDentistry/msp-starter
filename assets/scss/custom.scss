@@ -1,0 +1,45 @@
+//================================================
+// MAIN CUSTOM SASS FILE
+//================================================
+
+
+//----------------------------------------------
+// Sitewide Varibles, Mixins & Style Reset
+//----------------------------------------------
+
+@import "base/bootstrap"; // Bootstrap
+@import "base/variables"; // Variables
+@import "base/mixins"; // Mixins
+
+//----------------------------------------------
+// FontAwesome
+//----------------------------------------------
+
+@import "fontawesome/fontawesome"; // FontAwesome
+@import "fontawesome/solid"; // Solid
+@import "fontawesome/regular"; // Regular
+@import "fontawesome/brands"; // Brands
+
+//----------------------------------------------
+// jQuery & Plugin Styles
+//----------------------------------------------
+
+@import 'vendor/vendor';
+
+//----------------------------------------------
+// Admin Styles
+//----------------------------------------------
+
+@import "base/admin";
+
+//----------------------------------------------
+// Modules
+//----------------------------------------------
+
+@import 'modules/modules';
+
+//----------------------------------------------
+// Individual Pages
+//----------------------------------------------
+
+@import 'pages/pages';

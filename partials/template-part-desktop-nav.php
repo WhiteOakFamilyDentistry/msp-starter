@@ -1,17 +1,33 @@
-<?php if ( has_nav_menu( 'desktop_menu' ) ) : ?>
+<?php
 
-	<nav class="navbar navbar-default desktop-nav hidden-sm hidden-xs" role="navigation">
+/**
+* Desktop Navigation Partial
+*
+* This file controls the Desktop Navigation
+*
+* @package  Partials
+*
+*/
+
+if ( has_nav_menu( 'desktop_menu' ) ) : ?>
+
+	<nav class="d-none d-lg-block navbar navbar-expand-lg desktop-nav" role="navigation">
 
 		<?php
+
+		//-------------------------------
+		// Register Desktop Navigation
+		//-------------------------------
+
 			wp_nav_menu( array(
 				'theme_location'    => 'desktop_menu',
 				'depth'             => 2,
-				'container'         => 'div',
-				'container_class'   => 'collapse navbar-collapse navbar-1-collapse',
-				'menu_class'        => 'nav navbar-nav',
-				'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-				'walker'            => new wp_bootstrap_navwalker())
+				'menu_class'        => 'navbar-nav',
+				'fallback_cb'       => 'bs4navwalker::fallback',
+				'walker'            => new bs4navwalker()
+				)
 			);
+
 		?>
 	</nav>
 

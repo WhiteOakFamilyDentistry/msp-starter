@@ -4,6 +4,7 @@
 <main>
 	<article>
 		<section>
+			<?php the_content(); ?>
 		</section>
 	</article>
 </main>

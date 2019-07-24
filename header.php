@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
   <?php wp_head(); ?>
-  
 </head>
 <body <?php body_class(); ?>>
   <a href="#" class="scrollup"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-  <div class="container-fluid no-padding">
