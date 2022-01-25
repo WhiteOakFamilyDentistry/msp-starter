@@ -20,7 +20,7 @@ include 'lib/acf-options.php';
 //---------------------------
 
 
-function mem_theme_scripts()
+function msp_theme_scripts()
 {
     // Compiled Styles
     wp_register_style(
@@ -43,7 +43,7 @@ function mem_theme_scripts()
     );
     wp_enqueue_script('theme');
 }
-add_action('wp_enqueue_scripts', 'mem_theme_scripts');
+add_action('wp_enqueue_scripts', 'msp_theme_scripts');
 
 
 //----------------------
@@ -51,8 +51,8 @@ add_action('wp_enqueue_scripts', 'mem_theme_scripts');
 //----------------------
 
 
-if (!function_exists('mem_theme_title')) {
-    function mem_theme_title($title, $sep)
+if (!function_exists('msp_theme_title')) {
+    function msp_theme_title($title, $sep)
     {
         global $paged, $page;
 
@@ -76,7 +76,7 @@ if (!function_exists('mem_theme_title')) {
 
         return $title;
     }
-    add_filter('wp_title', 'mem_theme_title', 10, 2);
+    add_filter('wp_title', 'msp_theme_title', 10, 2);
 }
 
 
@@ -128,13 +128,13 @@ add_theme_support('automatic-feed-links');
 //--------------
 
 
-function mem_add_theme_favicon()
+function msp_add_theme_favicon()
 {
     $fav = get_field('site_favicon', 'option') ?: '' . get_template_directory_uri() . '/assets/images/favicon.png"';
 
     echo '<link rel="shortcut icon" href="' .$fav. '">';
 }
-add_action('wp_head', 'mem_add_theme_favicon');//Custom Favicon
+add_action('wp_head', 'msp_add_theme_favicon');//Custom Favicon
 
 
 //------------------------------------------
@@ -154,7 +154,7 @@ function default_attachment_display_settings()
 //------------------------------
 
 
-function mem_excerpt($num)
+function msp_excerpt($num)
 {
     $limit = $num+1;
     $excerpt = explode(' ', get_the_excerpt(), $limit);
@@ -169,16 +169,16 @@ function mem_excerpt($num)
 //-------------------------
 
 
-function mem_edit_footer()
+function msp_edit_footer()
 {
     add_filter('admin_footer_text', 'wpse_edit_text', 10);
 }
 
-function mem_edit_text($content)
+function msp_edit_text($content)
 {
     return 'Website developed by <strong><em>Matt Sigmon</em></strong>';
 }
-add_action('admin_init', 'mem_edit_text');
+add_action('admin_init', 'msp_edit_text');
 
 
 //-----------------
@@ -186,7 +186,7 @@ add_action('admin_init', 'mem_edit_text');
 //-----------------
 
 
-function mem_theme_pagination()
+function msp_theme_pagination()
 {
     global $postslist;
     $big = 999999999;
@@ -208,8 +208,8 @@ function mem_theme_pagination()
 //------------------------------------------
 
 
-if (!function_exists('mem_the_slug')) {
-    function mem_the_slug()
+if (!function_exists('msp_the_slug')) {
+    function msp_the_slug()
     {
         $post_data = get_post($post->ID, ARRAY_A);
         $slug = $post_data['post_name'];
@@ -223,7 +223,7 @@ if (!function_exists('mem_the_slug')) {
 //-----------------------
 
 
-function mem_breadcrumb()
+function msp_breadcrumb()
 {
     echo '<a href="'.home_url().'" rel="nofollow">Home</a>';
     if (is_category() || is_single()) {
@@ -256,16 +256,16 @@ function mem_breadcrumb()
  *
  */
 
-function mem_load_theme_fonts()
+function msp_load_theme_fonts()
 {
     echo '<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>';
     echo "<script>WebFont.load({ google: { families: ['Arvo:400,400i,700', 'Open Sans:400,400i,700' ]}});";
     echo '</script>';
 }
-add_action('wp_head', 'mem_load_theme_fonts');
+add_action('wp_head', 'msp_load_theme_fonts');
 
 // Load Google fonts on admin pages for block editor stlyes
-add_action('admin_head', 'mem_load_theme_fonts');
+add_action('admin_head', 'msp_load_theme_fonts');
 
 
 
@@ -298,13 +298,13 @@ remove_action('wp_head', 'wp_oembed_add_discovery_links');
 //-----------------------------------
 
 
-function mem_custom_mtypes($m)
+function msp_custom_mtypes($m)
 {
     $m['svg'] = 'image/svg+xml';
     $m['svgz'] = 'image/svg+xml';
     return $m;
 }
-add_filter('upload_mimes', 'mem_custom_mtypes');
+add_filter('upload_mimes', 'msp_custom_mtypes');
 
 /**
  *
@@ -319,7 +319,7 @@ add_filter('upload_mimes', 'mem_custom_mtypes');
  */
 
 
-function mem_acf_svg_helper($field)
+function msp_acf_svg_helper($field)
 {
 
     // Store file's Path info for conditional checks
@@ -356,7 +356,7 @@ add_theme_support('align-wide');
 //--------------------------------------
 
 
-function mem_add_editor_styles()
+function msp_add_editor_styles()
 {
     add_theme_support('editor-styles');
 
@@ -364,7 +364,7 @@ function mem_add_editor_styles()
         'assets/css/editor.css'
     ]); // TODO: Block editor styles don't like minified files.  It will not work as of 11/2021.  Re-test @ later date!
 }
-add_action('admin_init', 'mem_add_editor_styles');
+add_action('admin_init', 'msp_add_editor_styles');
 
 
 //==========================
@@ -372,38 +372,40 @@ add_action('admin_init', 'mem_add_editor_styles');
 //==========================
 
 
-function mem_duplicate_post_as_draft(){
+function msp_duplicate_post_as_draft()
+{
     global $wpdb;
-    if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'mem_duplicate_post_as_draft' == $_REQUEST['action'] ) ) ) {
-      wp_die('No post to duplicate has been supplied!');
+    if (! (isset($_GET['post']) || isset($_POST['post'])  || (isset($_REQUEST['action']) && 'msp_duplicate_post_as_draft' == $_REQUEST['action']))) {
+        wp_die('No post to duplicate has been supplied!');
     }
    
     /*
      * Nonce verification
      */
-    if ( !isset( $_GET['duplicate_nonce'] ) || !wp_verify_nonce( $_GET['duplicate_nonce'], basename( __FILE__ ) ) )
-      return;
+    if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce($_GET['duplicate_nonce'], basename(__FILE__))) {
+        return;
+    }
    
     /*
      * get the original post id
      */
-    $post_id = (isset($_GET['post']) ? absint( $_GET['post'] ) : absint( $_POST['post'] ) );
+    $post_id = (isset($_GET['post']) ? absint($_GET['post']) : absint($_POST['post']));
     /*
      * and all the original post data then
      */
-    $post = get_post( $post_id );
+    $post = get_post($post_id);
    
     $new_post_author = $post->post_author;
    
     /*
      * if post data exists, create the post duplicate
      */
-    if (isset( $post ) && $post != null) {
+    if (isset($post) && $post != null) {
    
       /*
        * new post data array
        */
-      $args = array(
+        $args = array(
         'comment_status' => $post->comment_status,
         'ping_status'    => $post->ping_status,
         'post_author'    => $new_post_author,
@@ -419,57 +421,60 @@ function mem_duplicate_post_as_draft(){
         'menu_order'     => $post->menu_order
       );
    
-      /*
-       * insert the post by wp_insert_post() function
-       */
-      $new_post_id = wp_insert_post( $args );
+        /*
+         * insert the post by wp_insert_post() function
+         */
+        $new_post_id = wp_insert_post($args);
    
-      /*
-       * get all current post terms ad set them to the new post draft
-       */
-      $taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
-      foreach ($taxonomies as $taxonomy) {
-        $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
-        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
-      }
-   
-      /*
-       * duplicate all post meta just in two SQL queries
-       */
-      $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
-      if (count($post_meta_infos)!=0) {
-        $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-        foreach ($post_meta_infos as $meta_info) {
-          $meta_key = $meta_info->meta_key;
-          if( $meta_key == '_wp_old_slug' ) continue;
-          $meta_value = addslashes($meta_info->meta_value);
-          $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+        /*
+         * get all current post terms ad set them to the new post draft
+         */
+        $taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+        foreach ($taxonomies as $taxonomy) {
+            $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+            wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
         }
-        $sql_query.= implode(" UNION ALL ", $sql_query_sel);
-        $wpdb->query($sql_query);
-      }
+   
+        /*
+         * duplicate all post meta just in two SQL queries
+         */
+        $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
+        if (count($post_meta_infos)!=0) {
+            $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+            foreach ($post_meta_infos as $meta_info) {
+                $meta_key = $meta_info->meta_key;
+                if ($meta_key == '_wp_old_slug') {
+                    continue;
+                }
+                $meta_value = addslashes($meta_info->meta_value);
+                $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+            }
+            $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+            $wpdb->query($sql_query);
+        }
    
    
-      /*
-       * finally, redirect to the edit post screen for the new draft
-       */
-      wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
-      exit;
+        /*
+         * finally, redirect to the edit post screen for the new draft
+         */
+        wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+        exit;
     } else {
-      wp_die('Post creation failed, could not find original post: ' . $post_id);
+        wp_die('Post creation failed, could not find original post: ' . $post_id);
     }
-  }
-  add_action( 'admin_action_rd_duplicate_post_as_draft', 'mem_duplicate_post_as_draft' );
+}
+  add_action('admin_action_rd_duplicate_post_as_draft', 'msp_duplicate_post_as_draft');
    
   /*
    * Add the duplicate link to action list for post_row_actions
    */
-  function mem_duplicate_post_link( $actions, $post ) {
-    if (current_user_can('edit_posts')) {
-      $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=rd_duplicate_post_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce' ) . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
-    }
-    return $actions;
+  function msp_duplicate_post_link($actions, $post)
+  {
+      if (current_user_can('edit_posts')) {
+          $actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=rd_duplicate_post_as_draft&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce') . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
+      }
+      return $actions;
   }
    
-  add_filter( 'post_row_actions', 'mem_duplicate_post_link', 10, 2 );
-  add_filter('page_row_actions', 'mem_duplicate_post_link', 10, 2);
+  add_filter('post_row_actions', 'msp_duplicate_post_link', 10, 2);
+  add_filter('page_row_actions', 'msp_duplicate_post_link', 10, 2);

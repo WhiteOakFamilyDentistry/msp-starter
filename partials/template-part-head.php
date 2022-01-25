@@ -31,7 +31,7 @@ get_template_part('partials/template-part', 'mobilenav-mmenu');
                         $logo = get_field('site_logo', 'option');
 
                         // Helper function to process SVGs
-                        mem_acf_svg_helper($logo);
+                        msp_acf_svg_helper($logo);
                     }
 
                     ?>
