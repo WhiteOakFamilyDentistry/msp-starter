@@ -1,8 +1,17 @@
-/*** HEADER STYLES ***/
+//=================
+// Header Styles
+//=================
 
 #header-container {
 }
 #logo {
-}
-#header-widget {
+  svg {
+    min-width: 250px;
+    height: 100%;
+  }
+  img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+  }
 }

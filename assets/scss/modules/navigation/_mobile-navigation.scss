@@ -1,0 +1,115 @@
+//----------------------------------
+// Mobile Navigation Styles
+//----------------------------------
+
+// Mmenu global vars
+:root {
+  /* Global Panel Styling */
+  --mm-color-background: #{$prim};
+  --mm-color-border: #{$wht20};
+  --mm-color-button: #{$sec};
+  --mm-color-text: #{$sec};
+
+  /* Panel Size */
+  --mm-line-height: 20px;
+  --mm-listitem-size: 44px;
+  --mm-navbar-size: 0;
+
+  /**
+    *
+    * REALLY IMPORTANT STUFF!!!!!!
+    * Use this to set the height of the mobile toggle menu bar.
+    *
+    * This height determines the spacing for the panels & content on mobile.
+    *
+    */
+
+  --mm-offset-top: 75px; // This value right here is the cat's pajamas
+
+  --mm-offset-right: 0;
+  --mm-offset-bottom: 0;
+  --mm-offset-left: 0;
+
+  /* Hamburger */
+  --mb-button-size: 60px;
+  --mb-bar-width: 0.6;
+  --mb-bar-height: 4px;
+  --mb-bar-spacing: 10px;
+  --mb-animate-timeout: 0.4s;
+}
+
+/* Mobile Navbar & Toggler */
+#mobile-navbar {
+  height: var(
+    --mm-offset-top
+  ); // Height matches offset to push panels down accordingly
+  background: none $prim;
+  border-bottom: 1px solid var(--mm-color-border);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  align-items: center;
+  #mobile-toggler {
+    border: none;
+    background: none transparent;
+    &:focus {
+      outline: none;
+    }
+    .mburger {
+      b {
+        background-color: $wht;
+        border-radius: 0;
+        box-shadow: $drop;
+      }
+    }
+  }
+}
+
+/* Mobile Logo */
+#mobile-logo {
+  padding: 10px;
+  svg {
+    @include svg-logo(125px, $prim);
+  }
+  img {
+    width: 100%;
+    max-width: 65px;
+    height: auto;
+  }
+}
+
+/* Navbar */
+.mm-navbar {
+  border-top: 5px solid $sec;
+  &:first-of-type {
+    display: none;
+  }
+  h1 {
+    @include font-size(18px, 100%);
+    margin-bottom: 0;
+    color: $prim;
+  }
+  &__title {
+    display: none; // Hide default "Menu" title
+  }
+}
+
+/* Menu */
+#mobile-menu {
+  a {
+    font-family: $heading;
+    font-weight: 700;
+    @include font-size(20px, 100%);
+    color: $wht;
+    text-shadow: $drop;
+  }
+}
+
+/* Site Content */
+#site-content {
+  @include breakpoint(md) {
+    top: var(
+      --mm-offset-top
+    ); // Push down site content on mobile to accommodate mobile nav toggler
+  }
+}

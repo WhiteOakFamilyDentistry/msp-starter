@@ -3,54 +3,103 @@
 //----------------------------------
 
 p {
-	font-family: $body-font;
-	@include font-size(16px);
+  font-family: $body;
+  @include font-size(16px);
+  &:empty {
+    display: none; // Remove empty p tags from block editor mishaps
+  }
 }
-h1, h2, h3, h4, h5, h6 {
-	font-family: $heading-font;
-	font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading;
+  font-weight: 700;
+  @include letter-spacing(0.75px);
 }
 h6 {
-	@include font-size(22px);
+  @include font-size(22px);
 }
 h5 {
-	@include font-size(24px);
+  @include font-size(24px);
 }
 h4 {
-	@include font-size(26px);
+  @include font-size(26px);
 }
 h3 {
-	@include font-size(28px);
+  @include font-size(28px);
 }
 h2 {
-	@include font-size(30px);
+  @include font-size(30px);
 }
 h1 {
-	@include font-size(32px);
+  @include font-size(32px);
 }
 
 //----------------------------------
 // Generic List Styles
 //----------------------------------
 
-ul {
-	li {
-		font-family: $body-font;
-	}
-}
+ul,
 ol {
-	li {
-		font-family: $body-font;
-	}
+  li {
+    font-family: $body;
+  }
 }
 
 //----------------------------------
-// Generic Linky Styles
+// Generic Link Styles
 //----------------------------------
 
 a {
-	&:link, &:visited {
-		&:hover {
-		}
-	}
+  &:link,
+  &:visited {
+    color: $prim;
+    transition: $smooth;
+    &:hover {
+      transition: $smooth;
+    }
+  }
+}
+
+//----------------
+// Tables
+//----------------
+
+table {
+  border: 1px solid $blk30;
+  font-family: $heading;
+  @include breakpoint(md) {
+    td {
+      &:empty {
+        display: none;
+      }
+    }
+  }
+  td {
+    border: 1px solid $blk30;
+    padding: 5px;
+  }
+  tr {
+    text-align: center;
+    td {
+      &:first-of-type {
+        text-align: left;
+      }
+    }
+    &:nth-of-type(odd) {
+      background-color: $prim;
+      color: $wht;
+      text-shadow: $drop;
+    }
+    &:first-of-type {
+      td {
+        &:first-of-type {
+          text-align: center;
+        }
+      }
+    }
+  }
 }

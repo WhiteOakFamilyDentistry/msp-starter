@@ -1,15 +1,26 @@
-<?php get_header(); ?>
-<?php get_template_part('partials/template-part', 'head'); ?>
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-<main>
-	<article>
-		<section>
-			<?php the_content(); ?>
-		</section>
-	</article>
-</main>
-<?php endwhile; else: ?>
-  <?php get_404_template(); ?>
-<?php endif; ?>
-<!-- END WORDPRESS LOOP -->
-<?php get_footer(); ?>
+<?php
+
+/**
+ *
+ * Standard Page with a container
+ * (max-width: 1320px)
+ *
+ */
+
+get_header();
+get_template_part('partials/template-part', 'head');
+if (have_posts()) : while (have_posts()) : the_post(); {
+    echo '<main class="mem-content-container">';
+    echo '<article>';
+    echo '<section class="mem-content container-xxl p-5">';
+    mas_breadcrumb();
+    the_content();
+    echo '</section>';
+    echo '<article>';
+    echo '</main>';
+}
+endwhile; else:
+get_404_template();
+endif;
+// End WordPress Loop
+get_footer();

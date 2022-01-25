@@ -1,3 +1,22 @@
-/*** FOOTER STYLES ***/
+//============
+// Footer
+//============
+
 footer {
+  position: relative;
+}
+#copyright {
+  p {
+    @include font-size(12px);
+    font-family: $heading;
+    color: $blk;
+    a {
+      color: $sec;
+      font-weight: 700;
+      &:hover {
+        color: $blk;
+        text-decoration: none;
+      }
+    }
+  }
 }

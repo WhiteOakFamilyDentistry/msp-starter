@@ -1,13 +1,29 @@
 {
     "key": "group_5bc8f42463e5b",
-    "title": "Logo",
+    "title": "Theme Settings",
     "fields": [
         {
+            "key": "field_61ce0bebd575c",
+            "label": "Branding",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_5bc8f5791cf9b",
-            "label": "SVG Logo Upload",
-            "name": "svg_logo_upload",
+            "label": "Site Logo",
+            "name": "site_logo",
             "type": "image",
-            "instructions": "If you have an SVG logo upload here.  It will be used for both desktop and mobile logos.",
+            "instructions": "The site's main logo.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -27,11 +43,11 @@
             "mime_types": ""
         },
         {
-            "key": "field_5bc90374b3e5b",
-            "label": "Traditional Logo Upload Desktop",
-            "name": "traditional_logo_desktop",
+            "key": "field_61ce0c57d575d",
+            "label": "Site Favicon",
+            "name": "site_favicon",
             "type": "image",
-            "instructions": "Traditional logo upload",
+            "instructions": "The site's custom favicon.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -39,7 +55,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
+            "return_format": "url",
             "preview_size": "thumbnail",
             "library": "all",
             "min_width": "",
@@ -51,11 +67,11 @@
             "mime_types": ""
         },
         {
-            "key": "field_5bc903f1b3e5c",
-            "label": "Traditional Logo Upload Mobile",
-            "name": "traditional_logo_mobile",
-            "type": "image",
-            "instructions": "Traditional logo upload for mobile",
+            "key": "field_61ce0dcbf334c",
+            "label": "Contact Information",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -63,16 +79,110 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_61ce0de7f334d",
+            "label": "Phone Number",
+            "name": "phone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61ce0df7f334e",
+            "label": "Email Address",
+            "name": "email",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_61ce0e0ef334f",
+            "label": "Social Media",
+            "name": "social_media",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_61ce0e19f3350",
+                    "label": "Facebook",
+                    "name": "facebook",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_61ce0e46f3351",
+                    "label": "Twitter",
+                    "name": "twitter",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_61ce0e50f3352",
+                    "label": "Instagram",
+                    "name": "instagram",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                }
+            ]
         }
     ],
     "location": [
@@ -80,7 +190,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "acf-options-logo"
+                "value": "theme-general-settings"
             }
         ]
     ],
@@ -90,7 +200,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1540239702
+    "show_in_rest": 0,
+    "modified": 1640894052
 }

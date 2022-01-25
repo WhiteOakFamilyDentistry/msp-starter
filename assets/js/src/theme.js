@@ -1,134 +1,99 @@
-var $ = jQuery;
-var currentTitle = $(document).attr('title');
+jQuery.noConflict();
 
-function testimonials() {
-	$('#testimonials').slick({
-		dots: true,
-		autoplay: true,
-		autoplaySpeed: 8000,
-  	infinite: true,
-  	speed: 500,
-  	fade: true,
-  	cssEase: 'linear'
-	});
-}
+(function ($) {
 
-function mobileNav() {
+  	function scrollUp() {
 
-	//====================================
-	// This function controls the mobile
-	// navigation.
-	//====================================
-	
-	var $menu = $('#mobile-menu').mmenu({
+    	$(window).scroll(function () {
+      		if ($(this).scrollTop() > 100) {
+        		$('.scrollup').fadeIn();
+      		} else {
+        		$('.scrollup').fadeOut();
+      		}
+    	});
 
-		// Style the Menu to Suit the Design
-		// More info: http://mmenu.frebsite.nl/
+    	$('.scrollup').click(function () {
+      		$('html, body').animate(
+        		{
+					scrollTop: 0,
+        		},
+        		600
+			  );
+			  
+		  return false;
+		  
+    	});
+  	}
 
-		'extensions': [
-		'fullscreen',
-		'fx-menu-zoom',
-		'fx-listitems-slide',
-		'border-full'
-		],
+  	//--------------------
+  	// Fade in Stuff
+  	//--------------------
 
-		backbutton: {
+  	function animateStuff() {
+		const w = $(window).width();
+		
+		if( w > 769 ) {
+			
+			$(window).scroll(function () {
+			
+				// add classes on page scroll to trigger animations
 
-			// Display back button
-			close: true
-		},
+      			// fade in effect
+      			$('.fade-out').each(function () {
+        			const bottom_of_object = $(this).offset().top + $(this).outerHeight();
+        			const bottom_of_window = $(window).scrollTop() + $(window).height();
 
-		navbars: [{
+        			if (bottom_of_window > bottom_of_object) {
+          				$(this).addClass('fade-in');
+        			}
+      			});
 
-			content: [
-				// Display the same hamburger nav if you'd like
-				'<button class="my-icon hamburger hamburger--collapse is-active" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>'
+      			// slide in effect
+      			$('.slide-it').each(function () {
+        			const bottom_of_object = $(this).offset().top + $(this).outerHeight();
+        			const bottom_of_window = $(window).scrollTop() + $(window).height() + 550;
 
-				// Alternatively, you could use the general close button
-				//'close'
-			],
+        			if (bottom_of_window > bottom_of_object) {
+          				$(this).addClass('slide-left');
+        			}
+      			});
 
-			// Display menu title or any HTML
-			// SVG code here is useful
-			title: currentTitle
+      			$('.slide-it-right').each(function () {
+        			const bottom_of_object = $(this).offset().top + $(this).outerHeight();
+        			const bottom_of_window = $(window).scrollTop() + $(window).height() + 550;
+        
+        			if (bottom_of_window > bottom_of_object) {
+          				$(this).addClass('slide-right');
+        			}
+      			});
+    
+      
+			});
 
-		}]
+    		// load first set of hidden items on short pages
+    		$('.fade-out').each(function () {
+      			const bottom_of_object = $(this).offset().top + $(this).outerHeight();
+      			const bottom_of_window = $(window).scrollTop() + $(window).height();
 
-	});
+      			if (bottom_of_window > bottom_of_object) {
+        			$(this).addClass('fade-in');
+      			}
+    		});
 
-	// Call API to open menu from closed state
-	var $icon = $('.my-icon');
-	var API = $menu.data( 'mmenu' );
+  		}
+    
+	  }
 
-	$icon.on( 'click', function() {
-	   API.open();
-	});
+	  function tabbedNav() {
+    	$('#hiring-steps .hiring-process-content:first-of-type').addClass('show active');
+    	$('#hiring-process-tabs.nav-tabs li:first-of-type a').addClass('active').attr("aria-selected", "true");
+  	}
+	  
+	$(document).ready(function () {
+    	scrollUp();
+		animateStuff();
+		tabbedNav();
+  	});
 
-	API.bind( 'open:finish', function() {
-	   setTimeout(function() {
-	      $icon.addClass( 'is-active' );
-	   }, 100);
-	});
-	API.bind( 'close:finish', function() {
-	   setTimeout(function() {
-	      $icon.removeClass( 'is-active' );
-	   }, 100);
-	});
-
-	// Call API to close menu when custom
-	// close button is clicked. Delete this
-	// section if using default close button.
-
-	var $icon = $('.my-icon.is-active');
-	var API = $menu.data( 'mmenu' );
-
-	$icon.on( 'click', function() {
-	   API.close();
-	});
-
-	API.bind( 'open:finish', function() {
-	   setTimeout(function() {
-	      $icon.addClass( 'is-active' );
-	   }, 100);
-	});
-	API.bind( 'close:finish', function() {
-	   setTimeout(function() {
-	      $icon.removeClass( 'is-active' );
-	   }, 100);
-	});
-
-// Exit Mobile Navigation
-
-}
-
-
-function loggedIn() {
-	if ($('#wpadminbar')[0]) {
-		$('#header-container').css('top', '32px');
-	}
-}
-
-function scrollUp() {
-	$(window).scroll(function () {
-		if ($(this).scrollTop() > 100) {
-			$('.scrollup').fadeIn();
-		} else {
-			$('.scrollup').fadeOut();
-		}
-	});
-
-	$('.scrollup').click(function () {
-		$('html, body').animate({
-			scrollTop: 0
-		}, 600);
-		return false;
-	});
-
-}
-
-$(document).ready(function() {
-	testimonials();
-	mobileNav();
-	loggedIn();
-	scrollUp();
-});
+// End jQuery function
+})(jQuery);

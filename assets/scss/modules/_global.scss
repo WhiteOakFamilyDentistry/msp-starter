@@ -1,0 +1,192 @@
+//=================
+// Global Classes
+//=================
+
+/**
+  *
+  * This file will contain global & custom
+  * classes that can be used in the block editor.
+  *
+***/
+
+//-----------------
+// Image Classes
+//----------------
+
+.frame {
+  img {
+    padding: 15px;
+    background: $wht;
+    border: 1px solid $blk10;
+  }
+}
+
+//---------------------
+// Bootstrap Button
+//---------------------
+
+.btn {
+  border-radius: 0;
+  font-family: $heading;
+  @include font-size(18px, 100%);
+
+  // Primary
+  &.btn-primary {
+    background-color: $prim;
+    border-color: $prim;
+    color: $wht;
+    font-weight: 700;
+    text-shadow: $drop;
+    text-transform: uppercase;
+    transition: $smooth;
+    &:hover {
+      background-color: $sec;
+      color: $blk;
+      text-shadow: $press;
+      transition: $smooth;
+    }
+    &:focus,
+    &:active,
+    &.focus,
+    &.ative,
+    &:not(:disabled):not(.disabled):active {
+      background-color: $prim;
+      box-shadow: none;
+    }
+  }
+
+  // Secondary
+  &.btn-secondary {
+    background-color: $sec;
+    border-color: $sec;
+    color: $prim;
+    &:hover {
+    }
+    &:focus,
+    &:active,
+    &.focus,
+    &.ative,
+    &:not(:disabled):not(.disabled):active {
+      background-color: $sec;
+      box-shadow: none;
+    }
+  }
+}
+
+//-------------
+// BG's
+//-------------
+
+.bg-primary {
+  background-color: $prim;
+}
+.bg-secondary {
+  background-color: $sec;
+}
+
+//--------------------
+// BG Opacity Mixin
+//--------------------
+
+@mixin bg-opacity() {
+  $clas: (10, 20, 30, 40, 50, 60, 70, 80, 90);
+  @each $cla in $clas {
+    .bg-black#{$cla} {
+      background-color: rgba(
+        0,
+        0,
+        0,
+        calc($cla / 100)
+      );
+    }
+  }
+}
+@include bg-opacity();
+
+//---------------
+// Text Stuff
+//---------------
+
+// Colors
+.text-primary {
+  color: $prim !important;
+}
+.text-secondary {
+  color: $sec;
+}
+.text-black {
+  color: $blk;
+}
+
+// Big Heading
+.big-heading {
+  @include font-size(50px);
+  @include breakpoint(md) {
+    @include font-size(30px);
+  }
+}
+
+.md-heading {
+  @include font-size(30px);
+}
+
+// Small Heading
+.small-heading {
+  @include font-size(18px);
+}
+
+// Dropshadow
+.drop {
+  text-shadow: $drop;
+}
+
+// Letterpress
+.press {
+  text-shadow: $press;
+}
+
+//----------
+// Lists
+//----------
+
+@mixin list-reset($icon) {
+  padding: 0;
+  li {
+    list-style-type: none;
+    color: inherit;
+    font-weight: 700;
+    @include font-size(20px);
+    font-family: $heading;
+    margin-bottom: 10px;
+    &:before {
+      @extend %fa-icon;
+      @extend .fas;
+      content: $icon;
+      margin-right: 10px;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    // Put font size back down for longer list items
+  }
+  &.normal-size {
+    li {
+      @include font-size(16px, 150%);
+    }
+  }
+}
+
+ul {
+  // Checkmark List
+  &.check {
+    @include list-reset(fa-content($fa-var-check-square));
+  }
+  // City List
+  &.city {
+    @include list-reset(fa-content($fa-var-city));
+  }
+  // University List
+  &.university {
+    @include list-reset(fa-content($fa-var-university));
+  }
+}

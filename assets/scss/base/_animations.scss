@@ -1,0 +1,101 @@
+/*
+ *
+ * Slide in Stuff
+ *
+ */
+
+// Spin Keyframe
+@keyframes spin {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+// Slide Left
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(-60px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+// Slide Right
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(-60px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* Basic slide classes */
+.slide-it {
+  @include breakpoint(769px, 999999999px) {
+    opacity: 0;
+    visibility: hidden;
+    &.slide-left {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+/* Basic slide classes */
+.slide-it-right {
+  @include breakpoint(769px, 999999999px) {
+    opacity: 0;
+    visibility: hidden;
+    &.slide-right {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.slide-left {
+  animation: slide-left 0.5s ease-in 0s forwards;
+}
+.slide-right {
+  animation: slide-right 0.5s ease-in 0s forwards;
+}
+.slide-down {
+  animation: slide-down 0.5s ease-in 0s forwards;
+}

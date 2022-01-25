@@ -1,28 +1,29 @@
-//====================================
-// VARIABLES
-//====================================
+//============
+// Variables
+//============
 
 /* Typography */
-$heading-font: 'Roboto Slab', serif;
-$body-font: 'Open Sans', sans-serif;
+$heading: 'Arvo', serif;
+$body: 'Open Sans', sans-serif;
 
 /**
  * FontAwesome default paths
 */
-$fa-font-path: "../webfonts";
+$fa-font-path: '../webfonts';
 
-/* Colors */
+/* Basic Black & White */
 $blk: #000;
 $wht: #fff;
-$ltgray: #ccc;
-$gray: #999;
-$blue: #06f;
 
 //-------------------------
 // Opacity Varibles
 //-------------------------
 
 /* Black */
+$blk01: rgba(0, 0, 0, 0.05);
+$blk02: rgba(3, 1, 1, 0.02);
+$blk03: rgba(0, 0, 0, 0.03);
+$blk04: rgba(0, 0, 0, 0.04);
 $blk05: rgba(0, 0, 0, 0.05);
 $blk10: rgba(0, 0, 0, 0.1);
 $blk20: rgba(0, 0, 0, 0.2);
@@ -46,8 +47,25 @@ $wht70: rgba(255, 255, 255, 0.7);
 $wht80: rgba(255, 255, 255, 0.8);
 $wht90: rgba(255, 255, 255, 0.9);
 
+//-----------------
+// Custom Colors
+//-----------------
+
+/* Custom Colors */
+$prim: rgba(23, 117, 191, 1);
+$sec: rgba(146, 239, 73, 1);
+$thd: rgba(154, 194, 230, 1);
+
+$prim50: rgba(23, 117, 191, 0.5);
+$sec50: rgba(146, 239, 73, 0.5);
+$thd50: rgba(154, 194, 230, 0.5);
+
+$prim25: rgba(23, 117, 191, 0.25);
+$sec25: rgba(146, 239, 73, 0.25);
+$thd25: rgba(154, 194, 230, 0.25);
+
 /* Effects */
-$letterpress: 0 1px rgba(255, 255, 255, 0.5);
-$drop: 0 1px 1px rgba(0, 0, 0, 0.8);
-$smooth: all, .15s, ease-in-out, .5s;
+$press: 0 1px $wht50;
+$drop: 0 1px 1px $blk80;
+$smooth: all, 0.15s, ease-in-out, 0.5s;
 $slow: all, 2s, ease-in-out, 2s;

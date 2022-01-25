@@ -1,0 +1,124 @@
+ul {
+  &#hiring-process-tabs {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(45, 45, 102, 1) 50%,
+      rgba(45, 45, 102, 1) 60%,
+      rgba(255, 255, 255, 1) 60%
+    ) !important;
+    margin: 30px 0;
+    padding: 0;
+    border: none;
+    @include flex-row(center, center);
+
+    // Mobile
+    @include breakpoint(sm) {
+      @include flex-row-wrap(center, center);
+      background: none transparent !important;
+      margin: 0;
+      padding: 15px;
+    }
+
+    li {
+      margin: 0 1% !important;
+      @include breakpoint(sm) {
+        margin: 1% !important;
+      }
+
+      &.active {
+        background-color: $sec;
+        &:hover {
+          background-color: $prim;
+          color: $wht;
+          transition: $smooth;
+          text-shadow: $drop;
+          outline: none;
+          a {
+            color: $wht;
+          }
+        }
+      }
+
+      .nav-link {
+        @include flex-column(center, center);
+        border-radius: 50%;
+        margin: 0;
+        padding: 0;
+        border: 5px solid $prim;
+        background: $sec;
+        width: 65px;
+        height: 65px;
+        line-height: 100%;
+        font-family: $heading;
+        font-weight: 800;
+        @include font-size(30px, 100%);
+        text-shadow: $press;
+        color: $blk;
+        &.active {
+          background: $prim;
+        }
+      }
+    }
+  }
+}
+
+.hiring-process-content {
+  min-height: 500px;
+  margin-top: 60px;
+  @include breakpoint(sm) {
+    min-height: auto;
+    margin-top: 30px;
+  }
+
+  h2 {
+    color: $prim;
+    @include font-size(36px);
+    &:first-of-type {
+      padding-bottom: 5px;
+      border-bottom: 1px solid $blk05;
+      margin-bottom: 15px;
+    }
+  }
+  h3 {
+    @include font-size(22px);
+    color: $prim;
+  }
+  em {
+    color: darken($prim, 10%);
+  }
+
+  ol {
+    margin: 30px 0;
+    padding: 30px;
+    li {
+      font-family: $heading;
+      margin: 5px 0;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  address {
+    padding: 30px;
+    margin-top: 30px;
+    //@extend .info-box;
+    border: 1px solid $blk20;
+    p {
+      margin-bottom: 0;
+      @include font-size(18px, 150%);
+      strong {
+        color: $prim;
+        @include font-size(24px);
+        font-family: $heading;
+        text-shadow: $press;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  iframe {
+    margin: 30px auto;
+  }
+}

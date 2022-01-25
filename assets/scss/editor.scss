@@ -1,0 +1,67 @@
+@import 'base/variables'; // Variables
+@import 'base/mixins'; // Mixins
+@import 'base/bootstrap'; // Grid
+@import 'fontawesome/fontawesome'; // FontAwesome
+@import 'fontawesome/solid'; // Solid
+@import 'fontawesome/regular'; // Regular
+@import 'fontawesome/brands'; // Brands
+@import 'modules/global'; // Typography
+@import 'modules/typography'; // Typography
+
+/* reset body background */
+body {
+  background-color: $wht;
+}
+
+/* Main column width */
+.wp-block {
+  max-width: 1170px;
+}
+
+/* Width of "wide" blocks */
+.wp-block[data-align='wide'] {
+  /* we let this inherit the max-width set above */
+  max-width: inherit;
+}
+
+/* Width of "full-wide" blocks */
+.wp-block[data-align='full'] {
+  max-width: none;
+}
+
+.editor-post-title {
+  &__input {
+    font-family: $heading;
+    text-transform: uppercase;
+    color: inherit;
+  }
+}
+.wp-block-group {
+  border: 1px solid $blk50;
+  padding: 15px;
+}
+
+.wp-block-wp-bootstrap-blocks-container {
+  background: $blk05;
+  padding: 15px;
+  border: 1px solid $blk50;
+}
+.wp-block-wp-bootstrap-blocks-row {
+  background: $blk03;
+  border: 1px solid $blk40;
+}
+.wp-block-wp-bootstrap-blocks-column {
+  background: $blk01;
+  padding: 5px;
+  border: 1px solid $blk40;
+}
+.wp-block-wp-bootstrap-blocks-button {
+  border-radius: 0;
+  font-family: $heading;
+  font-weight: 800;
+  @include font-size(20px, 100%);
+  padding: 0.5rem 1rem;
+  background-color: $prim;
+  border: 1px solid $wht20;
+  text-shadow: $drop;
+}

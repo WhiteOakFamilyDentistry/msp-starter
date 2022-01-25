@@ -1,7 +1,9 @@
+@import 'global'; // Globals Styles & Classes
+@import 'typography'; // Typography
 @import 'forms/gforms-reset';
 @import 'hamburgers/hamburgers';
 @import 'navigation/desktop-navigation';
 @import 'navigation/mobile-navigation';
+@import 'blocks/hiring-process';
 @import 'header';
 @import 'footer';
-@import 'typography';
