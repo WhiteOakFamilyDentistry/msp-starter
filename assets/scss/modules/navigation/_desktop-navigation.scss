@@ -1,6 +1,6 @@
-//----------------------------------
+//----------------------------
 // Desktop Navigation Styles
-//----------------------------------
+//----------------------------
 
 #desktop-navigation {
   padding: 0;
@@ -10,46 +10,73 @@
     margin: 0;
     li {
       @include flex-column(center, center);
-
       margin: 0;
       a {
         @include font-size(20px, 100%);
         transition: $smooth;
-        color: $blk;
+        color: $prim;
         font-weight: 700;
         font-family: $heading;
         display: block;
         padding: 15px 30px;
         &:hover {
           transition: $smooth;
-          background: $sec;
-          color: $blk;
-          text-shadow: $press;
+          color: $sec;
+          background: none transparent;
+        }
+        &.dropdown-item {
+          padding: 10px 30px;
+          border-radius: 0;
+          border: none;
+          @include font-size(16px, 100%);
+          font-weight: 400;
+          &.active {
+            background: none transparent;
+            color: $prim;
+            border: none;
+            border-bottom: 1px solid transparent;
+            &:hover {
+              color: $sec;
+            }
+          }
         }
       }
     }
   }
 
   /* Dropdowns */
-  .dropdown:hover > .dropdown-menu {
-    @include flex-column(center, center);
-    padding: 0;
-    border-radius: 0;
-    margin-top: -1px;
-    //width: 100%;
-    border: 1px solid $wht70;
-    box-shadow: 0 0 10px 10px $blk30;
-    a {
-      padding: 10px;
-      color: $wht;
-      background: none $prim;
-      text-align: left;
-      border: none;
+  .dropdown {
+    &.grid-list {
       &:hover {
-        background: none $sec;
-        color: $blk;
-        text-shadow: $press;
+        & > .dropdown-menu {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          li {
+            &:nth-of-type(odd) {
+              a {
+                border-right: 1px solid $blk05;
+              }
+            }
+          }
+        }
+      }
+    }
+    &:hover {
+      transition: $smooth;
+      & > .dropdown-menu {
+        display: grid;
+        grid-template-columns: repeat(1, 0fr);
+        padding: 15px 0;
+        top: 50px;
         border: none;
+        transition: $smooth;
+        li {
+          &:nth-of-type(odd) {
+            a {
+              border-right: none;
+            }
+          }
+        }
       }
     }
   }

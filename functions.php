@@ -81,11 +81,11 @@ if (!function_exists('msp_theme_title')) {
 
 
 //------------------------------------------
-// Register Bootstrap 4 Desktop Navigation
+// Register Bootstrap 5 Desktop Navigation
 //------------------------------------------
 
 
-require_once('lib/bs4Navwalker.php');
+require_once('lib/bootstrap_5_wp_nav_menu_walker.php');
 
 
 //----------------

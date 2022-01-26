@@ -468,6 +468,10 @@ legend + * {
   padding: 0;
 }
 
+::-webkit-file-upload-button {
+  font: inherit;
+}
+
 ::file-selector-button {
   font: inherit;
 }
@@ -2280,6 +2284,22 @@ progress {
   opacity: 1;
 }
 
+.form-control::-webkit-file-upload-button {
+  padding: 0.375rem 0.75rem;
+  margin: -0.375rem -0.75rem;
+  margin-inline-end: 0.75rem;
+  color: #212529;
+  background-color: #e9ecef;
+  pointer-events: none;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-inline-end-width: 1px;
+  border-radius: 0;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .form-control::file-selector-button {
   padding: 0.375rem 0.75rem;
   margin: -0.375rem -0.75rem;
@@ -2296,9 +2316,16 @@ progress {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .form-control::-webkit-file-upload-button {
+    -webkit-transition: none;
+    transition: none;
+  }
   .form-control::file-selector-button {
     transition: none;
   }
+}
+.form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+  background-color: #dde0e3;
 }
 .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
   background-color: #dde0e3;
@@ -2355,6 +2382,12 @@ progress {
   border-radius: 0.2rem;
 }
 
+.form-control-sm::-webkit-file-upload-button {
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem;
+  margin-inline-end: 0.5rem;
+}
+
 .form-control-sm::file-selector-button {
   padding: 0.25rem 0.5rem;
   margin: -0.25rem -0.5rem;
@@ -2372,6 +2405,12 @@ progress {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
+}
+
+.form-control-lg::-webkit-file-upload-button {
+  padding: 0.5rem 1rem;
+  margin: -0.5rem -1rem;
+  margin-inline-end: 1rem;
 }
 
 .form-control-lg::file-selector-button {
@@ -8191,8 +8230,7 @@ fieldset:disabled .btn {
 }
 
 .user-select-all {
-  -ms-user-select: all !important;
-      user-select: all !important;
+  user-select: all !important;
 }
 
 .user-select-auto {
@@ -17742,8 +17780,8 @@ ul.check li:before {
 }
 
 .btn.btn-primary {
-  background-color: #1775bf;
-  border-color: #1775bf;
+  background-color: #000;
+  border-color: #000;
   color: #fff;
   font-weight: 700;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
@@ -17752,34 +17790,34 @@ ul.check li:before {
 }
 
 .btn.btn-primary:hover {
-  background-color: #92ef49;
+  background-color: rgba(255, 255, 255, 0.5);
   color: #000;
   text-shadow: 0 1px rgba(255, 255, 255, 0.5);
   transition: all, 0.15s, ease-in-out, 0.5s;
 }
 
 .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.focus, .btn.btn-primary.ative, .btn.btn-primary:not(:disabled):not(.disabled):active {
-  background-color: #1775bf;
+  background-color: #000;
   box-shadow: none;
 }
 
 .btn.btn-secondary {
-  background-color: #92ef49;
-  border-color: #92ef49;
-  color: #1775bf;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #000;
 }
 
 .btn.btn-secondary:focus, .btn.btn-secondary:active, .btn.btn-secondary.focus, .btn.btn-secondary.ative, .btn.btn-secondary:not(:disabled):not(.disabled):active {
-  background-color: #92ef49;
+  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: none;
 }
 
 .bg-primary {
-  background-color: #1775bf;
+  background-color: #000;
 }
 
 .bg-secondary {
-  background-color: #92ef49;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .bg-black10 {
@@ -17819,11 +17857,11 @@ ul.check li:before {
 }
 
 .text-primary {
-  color: #1775bf !important;
+  color: #000 !important;
 }
 
 .text-secondary {
-  color: #92ef49;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .text-black {
@@ -18018,7 +18056,7 @@ ol li {
 }
 
 a:link, a:visited {
-  color: #1775bf;
+  color: #000;
   transition: all, 0.15s, ease-in-out, 0.5s;
 }
 
@@ -18050,7 +18088,7 @@ table tr td:first-of-type {
 }
 
 table tr:nth-of-type(odd) {
-  background-color: #1775bf;
+  background-color: #000;
   color: #fff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
@@ -18116,7 +18154,7 @@ body {
   font-size: 1.25rem;
   line-height: 100%;
   padding: 0.5rem 1rem;
-  background-color: #1775bf;
+  background-color: #000;
   border: 1px solid rgba(255, 255, 255, 0.2);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }

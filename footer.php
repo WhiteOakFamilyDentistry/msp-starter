@@ -9,7 +9,7 @@
     <section id="footer-info" class="container">
         <div id="copyright">
             <p>&copy; Copyright <?php echo date('Y'); ?></p>
-            <p>Website Developed by the <a href="https://matsigmonproductions.com/" target="_blank">Matt Sigmon</a>
+            <p>Website Developed by <a href="https://matsigmonproductions.com/" target="_blank">Matt Sigmon</a>
             <p>
         </div>
     </section>
